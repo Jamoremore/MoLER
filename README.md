@@ -1,7 +1,7 @@
 # MoLER
 
 <p align="center">
-  <img src="./figure/framework.pdf"/>
+  <img src="./figure/framework.jpg"/>
 </p>
 
 MoLER is a domain-aware Retrieval-Augmented Generation (RAG) framework that integrates MoL-Enhanced Reinforcement Learning to optimize retrieval efficiency and scalability in low-knowledge domains. By addressing the critical limitation of existing query augmentation methods that fail to align with large language models' (LLMs) contextual understanding, MoLER bridges the knowledge gap in RAG systems through end-to-end optimization of query and passage generation.
