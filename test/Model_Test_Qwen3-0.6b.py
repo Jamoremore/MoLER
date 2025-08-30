@@ -15,10 +15,10 @@ from prompt import *
 from transformers import AutoTokenizer
 
 
-NUM_RUNS = 2  
-MAX_RETRIES = 4  
+NUM_RUNS = 3
+MAX_RETRIES = 2
 MAX_WORKERS = 32  
-DEFAULT_TIMEOUT = 200  
+DEFAULT_TIMEOUT = 300  
 
 enable_thinking=False
 
@@ -118,7 +118,7 @@ class LLMEvaluator:
 						token += self.calculate_qwen_token_length(res_i)
 						if '</think>' in res_i:
 							res_i = res_i.split('</think>')[-1].strip()
-						res_i = res_i.split('</think>')[-1].strip()
+						res_i = res_i.split('Passage:')[-1].strip()
 						ans.append(res_i)
 					return index, ans, token
 			except Exception as e:
@@ -158,7 +158,7 @@ class LLMEvaluator:
 				if res:
 					if '</think>' in res:
 						res = res.split('</think>')[-1]
-					res = res.split('</think>')[-1].strip()
+					res = res.split('Passage:')[-1].strip()
 					token += self.calculate_qwen_token_length(res)
 					return index, res, token
 			except Exception as e:
@@ -187,6 +187,7 @@ class LLMEvaluator:
 					if res:
 						token += self.calculate_qwen_token_length(res)
 						res = res.split('</think>')[-1].strip()
+						res = res.split('Passage:')[-1].strip()
 						return index, res, token
 			except Exception as e:
 				logging.error(f"Attempt {attempt + 1} failed for index {index}: {e}")
